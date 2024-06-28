@@ -80,7 +80,14 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/open-algebra/Oasis', 
+            'aria-label': 'GitHub',
+            className: 'navbar__icon navbar__github',
+            position: 'right',
+            html: '<i class="fa fa-github"></i>',
+          },
+          {
+            href: 'https://github.com/open-algebra/Oasis',
             label: 'GitHub',
             position: 'right',
           },
@@ -93,7 +100,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'About',
                 to: '/docs/intro',
               },
             ],
@@ -124,7 +131,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/open-algebra/Oasis',
               },
             ],
           },

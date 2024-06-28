@@ -3,21 +3,32 @@
  * and scoped locally.
  */
 
-.heroBanner {
+ .heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background-color: transparent; /* Ensure no background color is interfering */
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.imageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Changed from -1 to 0 */
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1; /* Changed from 0.7 to 1 for full opacity */
+}
+
+/* Add this to ensure content is above the image */
+.container {
+  position: relative;
+  z-index: 1;
 }

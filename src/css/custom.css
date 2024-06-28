@@ -6,32 +6,28 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #9b5de5; /* Light Purple */
-  --ifm-color-primary-dark: #833ab4; /* Medium Purple */
-  --ifm-color-primary-darker: #6f2dbd; /* Darker Purple */
-  --ifm-color-primary-darkest: #5a189a; /* Darkest Purple */
-  --ifm-color-primary-light: #a663cc; /* Lighter Purple */
-  --ifm-color-primary-lighter: #b985cf; /* Even Lighter Purple */
-  --ifm-color-primary-lightest: #c9a8e2; /* Lightest Purple */
+  --ifm-color-primary: #000000; /* Black */
+  --ifm-color-primary-dark: #111111; /* Near Black */
+  --ifm-color-primary-darker: #222222; /* Darker Gray */
+  --ifm-color-primary-darkest: #333333; /* Dark Gray */
+  --ifm-color-primary-light: #444444; /* Medium Gray */
+  --ifm-color-primary-lighter: #555555; /* Light Gray */
+  --ifm-color-primary-lightest: #666666; /* Lighter Gray */
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(155, 89, 229, 0.1); /* Purple highlight with transparency */
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1); /* White highlight with transparency */
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #ff80ab; /* Light Pink */
-  --ifm-color-primary-dark: #ff4081; /* Medium Pink */
-  --ifm-color-primary-darker: #f50057; /* Darker Pink */
-  --ifm-color-primary-darkest: #c51162; /* Darkest Pink */
-  --ifm-color-primary-light: #ff9ecb; /* Lighter Pink */
-  --ifm-color-primary-lighter: #ffb2dd; /* Even Lighter Pink */
-  --ifm-color-primary-lightest: #ffccf0; /* Lightest Pink */
-  --docusaurus-highlighted-code-line-bg: rgba(255, 105, 180, 0.3); /* Pink highlight with transparency */
+  --ifm-color-primary: #ffffff; /* White */
+  --ifm-color-primary-dark: #f0f0f0; /* Near White */
+  --ifm-color-primary-darker: #e0e0e0; /* Lighter Gray */
+  --ifm-color-primary-darkest: #d0d0d0; /* Light Gray */
+  --ifm-color-primary-light: #c0c0c0; /* Medium Gray */
+  --ifm-color-primary-lighter: #b0b0b0; /* Dark Gray */
+  --ifm-color-primary-lightest: #a0a0a0; /* Darker Gray */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3); /* Black highlight with transparency */
 }
-
-/* src/css/custom.css */
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
 
 .navbar__title, .navbar__brand {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Courier New', monospace;
 }
