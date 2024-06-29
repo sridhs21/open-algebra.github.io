@@ -39,16 +39,18 @@ function HomepageHeader() {
             className={styles.bannerImage}
           />
         </div>
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Download OASIS V0.1 ⏱️
-          </Link>
+        <div className={styles.greyBox}>
+          <Heading as="h1" className="hero__title">
+            {siteConfig.title}
+          </Heading>
+          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <div className={styles.buttons}>
+            <Link
+              className="button button--secondary button--lg"
+              to="/docs/intro">
+              Download OASIS V0.1 ⏱️
+            </Link>
+          </div>
         </div>
       </div>
     </header>

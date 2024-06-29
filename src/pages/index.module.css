@@ -4,11 +4,12 @@
  */
 
  .heroBanner {
-  padding: 4rem 0;
+  min-height: 100vh; /* Ensures at least the height of the viewport */
+  padding: 10rem 0; /* Adjust top and bottom padding as needed */
   text-align: center;
   position: relative;
   overflow: hidden;
-  background-color: transparent; /* Ensure no background color is interfering */
+  background-color: transparent;
 }
 
 .imageContainer {
@@ -27,8 +28,13 @@
   opacity: 1; /* Changed from 0.7 to 1 for full opacity */
 }
 
-/* Add this to ensure content is above the image */
-.container {
+.greyBox {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  background-color: rgba(128, 128, 128, 0.6); /* Less transparent grey */
+  padding: 2rem; /* Adds padding around the content */
+  width: 60%; /* Adjust the width as needed */
+  margin: auto; /* Centers the box */
+  transform: translateY(-60px);
 }
+
