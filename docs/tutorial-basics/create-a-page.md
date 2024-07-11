@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Add
+# Quick Startup
 
 **Step 1:** Include the necessary Oasis headers in your source file.
 

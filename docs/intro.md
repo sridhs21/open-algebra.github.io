@@ -2,46 +2,99 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Quick Startup
 
-Let's discover **Docusaurus in less than 5 minutes**.
+**Step 1:** Include the necessary Oasis headers in your source file.
 
-## Getting Started
-
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+```cpp
+#include "Oasis/Add.hpp"
+#include "Oasis/Exponent.hpp"
+#include "Oasis/Imaginary.hpp"
+#include "Oasis/Multiply.hpp"
+#include "Oasis/Real.hpp"
+#include "Oasis/Variable.hpp"
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+**Step 2:** Use the provided classes to create mathematical expressions.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
+```cpp
+Oasis::Add add {
+    Oasis::Add {
+        Oasis::Real {1.0},
+        Oasis::Real {2.0}
+    },
+    Oasis::Real {3.0}
+};
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+In this example, we define the addition of three numbers: 1.0, 2.0, and 3.0.
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+**Step 3:** Simplify the created expression.
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+```cpp
+auto simplified = add.Simplify();
+```
+
+The `Simplify()` function simplifies the expression to its simplest form.
+
+**Step 4:** Use the specialized `As<>()` function to cast the simplified result to the expected type and retrieve the value.
+
+```cpp
+auto simplifiedReal = simplified->As<Oasis::Real>();
+auto value = simplifiedReal.GetValue();  // value will hold the result of 1.0 + 2.0 + 3.0
+```
+
+**Step 5:** Oasis also allows symbolic calculations. Here is how you can perform symbolic addition:
+
+```cpp
+Oasis::Add add {
+    Oasis::Multiply {
+        Oasis::Real {1.0},
+        Oasis::Variable {"x"}
+    },
+    Oasis::Multiply {
+        Oasis::Real {2.0},
+        Oasis::Variable {"x"}
+    }
+};
+
+auto simplified = add.Simplify();
+```
+
+The code above performs the symbolic addition of "1*x" and "2*x", simplifying it to "3*x".
+
+**Step 6:** You can also perform asynchronous simplification by using the `SimplifyAsync()` method.
+
+```cpp
+std::unique_ptr<Oasis::Expression> simplified = add.SimplifyAsync();
+```
+
+**Step 7:** To check if two expressions are structurally equivalent, you can use the `StructurallyEquivalent()` or `StructurallyEquivalentAsync()` function.
+
+```cpp
+bool areEquivalent = Oasis::Add {
+    Oasis::Real {},
+    Oasis::Real {}
+}.StructurallyEquivalent(
+    Oasis::Add {
+        Oasis::Real {},
+        Oasis::Real {}
+    }
+);
+```
+
+The above code checks if two addition expressions are structurally equivalent.
+
+### Important Concepts
+
+**Expressions**: An expression in Oasis is a mathematical operation which could be as simple as adding two numbers or as complex as a symbolic computation.
+
+**Real and Imaginary Numbers**: Oasis provides `Real` and `Imaginary` classes to represent real and imaginary numbers respectively.
+
+**Symbolic Computations**: Oasis library supports symbolic computations allowing algebraic expressions to be represented and manipulated symbolically.
+
+**Asynchronous Computations**: Oasis allows for asynchronous computation, which means you can perform operations in a non-blocking manner.
+
+**Structural Equivalence**: Two expressions are said to be structurally equivalent if they have the same structure (same operations and ordering of operands). The `StructurallyEquivalent()` function checks this property.
+
+By understanding these concepts and using the steps mentioned above, you should be able to comfortably use the Oasis library. Happy Coding!

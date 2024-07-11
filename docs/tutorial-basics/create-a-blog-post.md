@@ -2,33 +2,38 @@
 sidebar_position: 3
 ---
 
-# Create a Blog Post
+# Instructions to Build the Oasis Project
 
-Docusaurus creates a **page for each blog post**, but also a **blog index page**, a **tag system**, an **RSS** feed...
+## Prerequisites
+- Ensure you have a C++ compiler installed. Oasis requires at least CMake 3.18 to build, so make sure your compiler supports at least this version.
+- Git should be installed on your machine as some dependencies are fetched from their respective Git repositories.
 
-## Create your first Post
+## Steps to build Oasis
+1. **Clone the Oasis project from its repository**
+    - Use the command: `git clone https://github.com/open-algebra/Oasis`
+    - Navigate to the cloned directory: `cd Oasis`
 
-Create a file at `blog/2021-02-28-greetings.md`:
+2. **Setup a build directory**
+    - Inside the Oasis directory, create a new directory named "build": `mkdir build`
 
-```md title="blog/2021-02-28-greetings.md"
----
-slug: greetings
-title: Greetings!
-authors:
-  - name: Joel Marcey
-    title: Co-creator of Docusaurus 1
-    url: https://github.com/JoelMarcey
-    image_url: https://github.com/JoelMarcey.png
-  - name: Sébastien Lorber
-    title: Docusaurus maintainer
-    url: https://sebastienlorber.com
-    image_url: https://github.com/slorber.png
-tags: [greetings]
----
+3. **Configure the project**
+    - Run `cmake -B build .` This will configure the project and prepare to generate the build system, using the default generator and compiler on your environment. 
+    - If you want to use a specific generator, specify it with -G. For example, to use the "Ninja" generator, run `cmake -G "Ninja" -B build .`
 
-Congratulations, you have made your first post!
+4. **Customize the Build options**
+    - Oasis project provides several options that you can toggle ON/OFF according to your needs:
 
-Feel free to play around and edit this post as much as you like.
-```
+      - `OASIS_BUILD_EXTRAS`: Enables building extra modules for Oasis
+      - `OASIS_BUILD_TESTS`: Enables building unit tests for Oasis
+      - `OASIS_BUILD_WITH_COVERAGE`: Enables building Oasis with code coverage enabled. Note that only the Clang compiler is currently supported for code coverage.
 
-A new blog post is now available at [http://localhost:3000/blog/greetings](http://localhost:3000/blog/greetings).
+      These options are turned OFF by default.
+    - To turn these options ON, you can run CMake with -D. For example, to enable building of tests, run `cmake -DOASIS_BUILD_TESTS=ON -B build .`
+
+5. **Build the Project**
+    - Run `cmake --build .` This will start the actual build process. Ensure that you have the necessary permissions to read and write in your build directory.
+
+6. **Running Tests** (If `OASIS_BUILD_TESTS` was set to ON)
+    - After successfully building the project, you can run the unit tests using `ctest` command.
+
+Feel free to repeat steps 3-5 to re-configure and re-build the project using different options. Make sure to clear your build directory before doing so.
