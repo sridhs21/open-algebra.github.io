@@ -1,16 +1,16 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+OASIS:
+  label: OASIS
+  permalink: /OASIS
+  description: OASIS application
+math:
+  label: math
+  permalink: /math
+  description: math tag description
+launch:
+  label: launch
+  permalink: /launch
+  description: launch tag description
+update:
+  label: update
+  permalink: /update
+  description: major change being made to the website

@@ -1,152 +1,49 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
 
-# Markdown Features
+# Tutorial for Using the C Wrapper for Oasis
 
-Docusaurus supports **[Markdown](https://daringfireball.net/projects/markdown/syntax)** and a few **additional features**.
+Oasis is a powerful mathematical software library. This tutorial will guide you to use the C wrapper for Oasis library to perform basic addition.
 
-## Front Matter
+## Step 1: Creating Real Numbers
 
-Markdown documents have metadata at the top called [Front Matter](https://jekyllrb.com/docs/front-matter/):
+To create real numbers, the function `Oa_CreateReal()` is used passing an integer or float number as an argument.
 
-```text title="my-doc.md"
-// highlight-start
----
-id: my-doc-id
-title: My document title
-description: My document description
-slug: /my-custom-url
----
-// highlight-end
-
-## Markdown heading
-
-Markdown text with [links](./hello.md)
+```c++
+struct Oa_Expression* real1 = Oa_CreateReal(2);
+struct Oa_Expression* real2 = Oa_CreateReal(3);
 ```
 
-## Links
+## Step 2: Performing Mathematical Operations & Simplifying 
 
-Regular Markdown links are supported, using url paths or relative file paths.
+You can perform addition, subtraction, multiplication and division using `Oa_CreateAddNF()`, `Oa_CreateSubtractNF()`, `Oa_CreateMultiplyNF()` and `Oa_CreateDivideNF()` functions respectively. These functions take two number expressions (expressed as `struct Oa_Expression*`) as arguments and return the expression structure. Note these are the "non-freeing" functions. Which  makes a copy of the operands you pass in. Please see the documentation for their "free-ing" equivalents
 
-```md
-Let's see how to [Create a page](/create-a-page).
+After performing the operations, use of `Oa_Simplify(expr)` function is done to simplify the expressions. It takes an expression structure and simplifies it.
+
+```c++
+struct Oa_Expression* add = Oa_CreateAddNF(real1, real2);
+struct Oa_Expression* addResult = Oa_Simplify(add);
 ```
 
-```md
-Let's see how to [Create a page](./create-a-page.md).
+## Step 3: Retrieving Result From Expression
+
+The `Oa_GetValueFromReal(expr)` function is used to retrieve the resulting value from the expression. It takes your simplified result expression as an argument and returns the final required value.
+
+```c++
+assert(Oa_GetValueFromReal(addResult) == 5);
 ```
 
-**Result:** Let's see how to [Create a page](./create-a-page.md).
+## Step 4: Clearing Memory
 
-## Images
+To free up the memory that has been allocated for the different number expressions, use `Oa_Free(expr)`.
 
-Regular Markdown images are supported.
-
-You can use absolute paths to reference images in the static directory (`static/img/logo.png`):
-
-```md
-![Docusaurus logo](/img/logo.png)
+```c++
+Oa_Free(real1);
+Oa_Free(real2);
+Oa_Free(addResult);
 ```
 
-![Docusaurus logo](/img/logo.png)
+This concludes the basic usage of Oasis library. Remember to properly handle memory allocation and deallocation to prevent any leaks.
 
-You can reference images relative to the current file as well. This is particularly useful to colocate images close to the Markdown files using them:
 
-```md
-![Docusaurus logo](./img/logo.png)
-```
-
-## Code Blocks
-
-Markdown code blocks are supported with Syntax highlighting.
-
-````md
-```jsx title="src/components/HelloDocusaurus.js"
-function HelloDocusaurus() {
-  return <h1>Hello, Docusaurus!</h1>;
-}
-```
-````
-
-```jsx title="src/components/HelloDocusaurus.js"
-function HelloDocusaurus() {
-  return <h1>Hello, Docusaurus!</h1>;
-}
-```
-
-## Admonitions
-
-Docusaurus has a special syntax to create admonitions and callouts:
-
-```md
-:::tip My tip
-
-Use this awesome feature option
-
-:::
-
-:::danger Take care
-
-This action is dangerous
-
-:::
-```
-
-:::tip My tip
-
-Use this awesome feature option
-
-:::
-
-:::danger Take care
-
-This action is dangerous
-
-:::
-
-## MDX and React Components
-
-[MDX](https://mdxjs.com/) can make your documentation more **interactive** and allows using any **React components inside Markdown**:
-
-```jsx
-export const Highlight = ({children, color}) => (
-  <span
-    style={{
-      backgroundColor: color,
-      borderRadius: '20px',
-      color: '#fff',
-      padding: '10px',
-      cursor: 'pointer',
-    }}
-    onClick={() => {
-      alert(`You clicked the color ${color} with label ${children}`)
-    }}>
-    {children}
-  </span>
-);
-
-This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
-
-This is <Highlight color="#1877F2">Facebook blue</Highlight> !
-```
-
-export const Highlight = ({children, color}) => (
-  <span
-    style={{
-      backgroundColor: color,
-      borderRadius: '20px',
-      color: '#fff',
-      padding: '10px',
-      cursor: 'pointer',
-    }}
-    onClick={() => {
-      alert(`You clicked the color ${color} with label ${children}`);
-    }}>
-    {children}
-  </span>
-);
-
-This is <Highlight color="#25c2a0">Docusaurus green</Highlight> !
-
-This is <Highlight color="#1877F2">Facebook blue</Highlight> !

@@ -1,17 +1,17 @@
-endi:
-  name: Endilie Yacop Sucipto
-  title: Maintainer of Docusaurus
-  url: https://github.com/endiliey
-  image_url: https://github.com/endiliey.png
+swaroop:
+  name: Swaroop Sridhar
+  title: Maintainer of OASIS Website
+  url: https://github.com/sridhs2
+  image_url: https://github.com/sridhs2.png
 
-yangshun:
-  name: Yangshun Tay
-  title: Front End Engineer @ Facebook
-  url: https://github.com/yangshun
-  image_url: https://github.com/yangshun.png
+andrew:
+  name: Andrew Nazarenth
+  title: Main Software Engineer
+  url: https://github.com/404Naz
+  image_url: https://github.com/404Naz.png
 
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
+matthew:
+  name: Matthew McCall
+  title: OASIS maintainer
+  url: https://github.com/matthew-mccall
+  image_url: https://github.com/matthew-mccall.png
