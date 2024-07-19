@@ -64,7 +64,7 @@ function HomepageHeader() {
             <Link
               className="button button--secondary button--lg"
               to="/docs/intro">
-              Download OASIS V0.1 ⏱️
+              Download OASIS V0.1
             </Link>
           </div>
         </div>

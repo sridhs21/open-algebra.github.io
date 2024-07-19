@@ -18,8 +18,8 @@ const FeatureList = [
     Svg: require('@site/static/img/Flamingo.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        O.A.S.I.S lets you focus on getting math done quickly. To learn how to use
+        our program, head over to the <code>Tutorial</code>.
       </>
     ),
   },
@@ -28,8 +28,7 @@ const FeatureList = [
     Svg: require('@site/static/img/Camel.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Extend or customize your website layout by reusing React.
       </>
     ),
   },

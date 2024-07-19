@@ -2,87 +2,44 @@
 sidebar_position: 2
 ---
 
-# Translate your site
+# Expression as Binary Trees
+How do you represent an equation in a computer? We could do with a string, but that no fun for anyone. Instead, we do it with trees. Here is how it goes, almost everything is a node in the tree: operations, numbers, variables, functions, and so on. The operands of an operation or arguments to a function are children of said operand or function in the tree.
 
-Let's translate `docs/intro.md` to French.
+### The Naive Approach
+Let us consider a simple tree implementation:
+```cpp
+struct Expression
+{
+  Expression *left, *right;
+};
 
-## Configure i18n
+struct Add: public Expression { };
 
-Modify `docusaurus.config.js` to add support for the `fr` locale:
+struct Real: public Expression
+{
+  double value;
+};
+``` 
 
-```js title="docusaurus.config.js"
-export default {
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'fr'],
-  },
+While the above works for simple cases, it quickly becomes very messy when we want do more complicated things. For instance, to get values of out the tree, we must first do a `dynamic_cast` to get a Real or an Add. This became tedious for more complicated trees.
+
+### The Templated Approach
+What if we could simply "get" the numbers in an `Add`? We could go with templates:
+```cpp
+struct Expression { };
+
+template <typename LeftT, typename RightT>
+struct Add: public Expression {
+  Left* left;
+  Right* right;
+};
+
+struct Real: public Expression
+{
+  double value;
 };
 ```
+Great! Now can simply "get" the number on the left-hand side and we will a variable of type `Real` - assuming we have a number on the left-hand side. Passing this tree around also becomes tedious, what if instead of `Add<Real, Real>`, we had `Add<Add<Real, Real>, Real>`>? We could just pass an `Expression*` to it again, but then we're back to the same problem.
 
-## Translate a doc
-
-Copy the `docs/intro.md` file to the `i18n/fr` folder:
-
-```bash
-mkdir -p i18n/fr/docusaurus-plugin-content-docs/current/
-
-cp docs/intro.md i18n/fr/docusaurus-plugin-content-docs/current/intro.md
-```
-
-Translate `i18n/fr/docusaurus-plugin-content-docs/current/intro.md` in French.
-
-## Start your localized site
-
-Start your site on the French locale:
-
-```bash
-npm run start -- --locale fr
-```
-
-Your localized site is accessible at [http://localhost:3000/fr/](http://localhost:3000/fr/) and the `Getting Started` page is translated.
-
-:::caution
-
-In development, you can only use one locale at a time.
-
-:::
-
-## Add a Locale Dropdown
-
-To navigate seamlessly across languages, add a locale dropdown.
-
-Modify the `docusaurus.config.js` file:
-
-```js title="docusaurus.config.js"
-export default {
-  themeConfig: {
-    navbar: {
-      items: [
-        // highlight-start
-        {
-          type: 'localeDropdown',
-        },
-        // highlight-end
-      ],
-    },
-  },
-};
-```
-
-The locale dropdown now appears in your navbar:
-
-![Locale Dropdown](./img/localeDropdown.png)
-
-## Build your localized site
-
-Build your site for a specific locale:
-
-```bash
-npm run build -- --locale fr
-```
-
-Or build your site to include all the locales at once:
-
-```bash
-npm run build
-```
+### The Oasis Approach
+So it's a lot easier to pass around `Expression*`, but using templates makes it easier to actually work with. What if we just did both? In Oasis, each `Expression` has a `Generalize` method that returns an `std::unique<Oasis::Expression`, the status quo of passing expressions around. When you want to operate on the expression, you can use `Oasis::Specialize` to check if an expression is of a certain type and cast it if so!
